@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light}[hidden]{display:none!important}</style>
+<title>EmprendeDash</title>
+<meta name="description" content="Clientes, productos, inventario, finanzas y redes sociales de tu almacén en un solo lugar. Gratis para empezar, en tu computador o en tu celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Nunito:wght@400;500;600;700;800&display=swap">
+<style>
+/* Siempre en modo claro, igual que la app. Concepto: landing de dos tonos. Fondo lila muy claro, texto en tinta azulada, un solo acento violeta (el de la app) y una franja oscura (el menú lateral de la app) para la sección "responsiva". Los equipos y teléfonos muestran la app real. */
+:root{
+  --bg:#faf9fd;--surface:#ffffff;--tint:#f1ecfe;--ink:#14161d;--mute:#575b6b;--line:#e6e2f1;
+  --accent:#7c3aed;--accent-hover:#6d28d9;--on-accent:#ffffff;--accent-text:#6d28d9;
+  --band:#181b22;--band-ink:#f4f5f8;--band-mute:#a6abbb;--band-line:#2b2f3a;
+  --ok:#0b8a5f;--gold:#b45309;
+  --shadow:0 1px 2px rgba(20,22,29,.06),0 12px 32px rgba(40,24,90,.10);
+  --f-display:"Poppins","Nunito",system-ui,sans-serif;--f-body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.15;letter-spacing:-.01em;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{width:100%;max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sec{padding-block:clamp(56px,8vw,104px)}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-text)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--mute);max-width:56ch}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:12px;font:700 1rem var(--f-body);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,transform .15s}
+.btn.pri{background:var(--accent);color:var(--on-accent)}
+.btn.pri:hover{background:var(--accent-hover)}
+.btn.sec2{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.sec2:hover{border-color:var(--accent)}
+.btn.sm{min-height:40px;padding:0 18px;font-size:.95rem;border-radius:10px}
+.btn.lg{min-height:56px;padding:0 32px;font-size:1.0625rem}
+.btn:active{transform:translateY(1px)}
+
+/* cabecera */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;font:700 1.2rem var(--f-display);letter-spacing:-.01em;text-decoration:none}
+.mark{width:30px;height:30px;border-radius:9px;background:var(--accent);display:grid;place-items:center;color:#fff;flex:none}
+.top nav{display:flex;gap:26px;margin-left:auto;font-size:.95rem;font-weight:500}
+.top nav a{text-decoration:none;color:var(--mute)}.top nav a:hover{color:var(--ink)}
+.top .btn{margin-left:8px}
+@media(max-width:760px){.top nav{display:none}.top .btn{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:clamp(40px,6vw,88px) clamp(48px,7vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,64px);align-items:center}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.1rem)}
+.hero h1 em{font-style:normal;color:var(--accent-text)}
+.hero .lead{margin-top:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 20px;margin:22px 0 0;padding:0;list-style:none;font-size:.95rem;color:var(--mute)}
+.ticks li{display:flex;align-items:center;gap:8px}
+.ticks svg{color:var(--ok);flex:none}
+@media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* equipos */
+.devs{position:relative;padding:0 0 8% 0}
+.laptop{width:92%}
+.laptop .scr{border:9px solid #14161d;border-bottom-width:11px;border-radius:14px 14px 3px 3px;background:#14161d;overflow:hidden;aspect-ratio:8/5;box-shadow:var(--shadow)}
+.laptop .scr>*{width:100%;height:100%;object-fit:cover;object-position:top left}
+.laptop::after{content:"";display:block;height:12px;width:108%;margin-left:-4%;background:#c3c6cf;border-radius:0 0 16px 16px;box-shadow:0 8px 20px rgba(20,22,29,.18)}
+.phone{position:absolute;right:0;bottom:0;width:28%;aspect-ratio:390/844;border:7px solid #14161d;border-radius:28px;background:#14161d;overflow:hidden;box-shadow:var(--shadow)}
+.phone>*{width:100%;height:100%;object-fit:cover;object-position:top}
+.devs.solo{padding:0}.devs.solo .laptop{width:100%}
+@media(max-width:560px){.phone{border-width:5px;border-radius:20px}.laptop .scr{border-width:6px;border-bottom-width:8px;border-radius:10px 10px 2px 2px}}
+
+/* franja de confianza */
+.strip{border-block:1px solid var(--line);background:var(--surface)}
+.strip ul{list-style:none;margin:0;padding:22px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 24px;font-size:.95rem;font-weight:500}
+.strip li{display:flex;align-items:center;gap:10px}
+.strip svg{color:var(--accent-text);flex:none}
+@media(max-width:860px){.strip ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* secciones de funciones */
+.intro{max-width:760px;margin-bottom:clamp(40px,6vw,72px)}
+.intro h2{font-size:clamp(1.9rem,3.8vw,2.9rem);margin-top:12px}
+.intro .lead{margin-top:16px}
+.feat{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:center;padding-block:clamp(28px,4vw,52px)}
+.feat+.feat{border-top:1px solid var(--line)}
+.feat.rev .txt{order:2}
+.feat h3{font-size:clamp(1.55rem,2.8vw,2.2rem);margin-top:10px}
+.feat .txt p.d{margin-top:14px;color:var(--mute)}
+.list{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px}
+.list li{display:flex;gap:12px;align-items:flex-start}
+.list svg{color:var(--ok);flex:none;margin-top:4px}
+@media(max-width:900px){.feat{grid-template-columns:minmax(0,1fr)}.feat.rev .txt{order:0}}
+
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:clamp(28px,4vw,52px)}
+.mini{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;gap:12px;align-content:start}
+.mini h3{font-size:1.4rem}
+.mini p{color:var(--mute)}
+.mini .ico{width:44px;height:44px;border-radius:12px;background:var(--tint);color:var(--accent-text);display:grid;place-items:center}
+@media(max-width:760px){.duo{grid-template-columns:minmax(0,1fr)}}
+
+/* franja oscura: responsiva */
+.band{background:var(--band);color:var(--band-ink)}
+.band .eyebrow{color:#c4b5fd}
+.band .wrap.g{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:center}
+.band h2{font-size:clamp(2rem,4.2vw,3.2rem);margin-top:12px}
+.band p.lead{color:var(--band-mute);margin-top:18px}
+.band .list li{color:var(--band-ink)}.band .list svg{color:#4fe0aa}
+.frame{border-radius:14px;overflow:hidden;border:1px solid var(--band-line);background:#0b0d12;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.frame .bar{display:flex;gap:7px;align-items:center;height:34px;padding:0 14px;background:#20242e}
+.frame .bar i{width:10px;height:10px;border-radius:50%;background:#464c5c}
+.frame video{width:100%;aspect-ratio:8/5;object-fit:cover}
+.tour{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:clamp(16px,3vw,32px);align-items:end;margin-top:clamp(48px,6vw,80px)}
+.tour .ph{border:7px solid #2a2e3a;border-radius:30px;overflow:hidden;background:#000;aspect-ratio:390/844}
+.tour .ph video{width:100%;height:100%;object-fit:cover}
+.tour small{display:block;margin-top:10px;color:var(--band-mute);font-size:.85rem}
+@media(max-width:900px){.band .wrap.g{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){.tour{grid-template-columns:minmax(0,1fr) minmax(0,38%)}}
+
+/* pasos */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;gap:10px;align-content:start}
+.steps li::before{content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font:700 1.1rem var(--f-display)}
+.steps h3{font-size:1.3rem}.steps p{color:var(--mute)}
+@media(max-width:820px){.steps{grid-template-columns:minmax(0,1fr)}}
+
+/* planes */
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:32px;display:grid;gap:18px;align-content:start}
+.plan.pro{border:2px solid var(--accent);position:relative}
+.tagp{position:absolute;top:-13px;left:24px;background:var(--accent);color:#fff;font-size:.78rem;font-weight:600;padding:4px 12px;border-radius:99px;letter-spacing:.02em}
+.plan h3{font-size:1.5rem}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font:700 2.6rem var(--f-display);letter-spacing:-.02em}
+.price s{color:var(--mute)}
+.price span{color:var(--mute);font-size:.95rem}
+.plan .sub{color:var(--mute);font-size:.95rem}
+.plan .btn{width:100%}
+.fine{font-size:.88rem;color:var(--mute);margin-top:18px;max-width:70ch}
+@media(max-width:760px){.plans{grid-template-columns:minmax(0,1fr)}}
+
+/* preguntas */
+.faq{max-width:820px;display:grid;gap:0}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 0;font:600 1.1rem var(--f-body)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 1.6rem/1 var(--f-body);color:var(--accent-text);flex:none}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 22px;color:var(--mute);max-width:64ch}
+
+/* cierre */
+.final{background:var(--tint);text-align:center}
+.final .wrap{display:grid;justify-items:center;gap:20px}
+.final h2{font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch}
+.final p{color:var(--mute);max-width:46ch}
+footer{padding-block:36px;border-top:1px solid var(--line);color:var(--mute);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio"><span class="mark" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11a2.8 2.8 0 00-4-4L4 15l-1 4z"/><path d="M14 6l4 4"/></svg></span><span data-brand>EmprendeDash</span></a>
+    <nav aria-label="Principal"><a href="#funciones">Funciones</a><a href="#responsiva">En tu celular</a><a href="#planes">Planes</a><a href="#preguntas">Preguntas</a></nav>
+    <a class="btn pri sm" data-cta href="#">Empieza gratis</a>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Para almacenes y emprendimientos</p>
+      <h1 style="margin-top:14px">Tu almacén, <em>ordenado</em> desde el celular.</h1>
+      <p class="lead">Clientes, productos, inventario, finanzas y redes sociales en un solo lugar. Sin instalar nada, en tu computador o en tu celular.</p>
+      <div class="cta-row">
+        <a class="btn pri lg" data-cta href="#">Empieza gratis</a>
+        <a class="btn sec2 lg" href="#responsiva">Ver cómo funciona</a>
+      </div>
+      <ul class="ticks">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Sin tarjeta</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Sin instalar nada</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>En español</li>
+      </ul>
+    </div>
+    <div class="devs" aria-hidden="false">
+      <div class="laptop"><div class="scr"><img src="img/pc-inicio.jpg" width="1600" height="1000" alt="Pantalla de inicio de la app en un computador, con el resumen del negocio"></div></div>
+      <div class="phone"><img src="img/mo-inicio.jpg" width="585" height="1266" alt="La misma pantalla de inicio en un celular, con el menú abajo"></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"><div class="wrap"><ul>
+  <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5M16 4.8a3.5 3.5 0 010 6.4M18 14.8c2 .6 3.2 2.3 3.5 5"/></svg>Clientes y WhatsApp</li>
+  <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5v-9zM3 7.5l9 4.5 9-4.5M12 12v9"/></svg>Productos e inventario</li>
+  <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.3c-.5-.8-1.4-1.3-2.6-1.3-1.5 0-2.6.8-2.6 2s1.1 1.6 2.6 2 2.6.8 2.6 2-1.1 2-2.6 2c-1.2 0-2.1-.5-2.6-1.3M12 6.5V8M12 16v1.5"/></svg>Finanzas del día y del mes</li>
+  <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Redes sociales con IA</li>
+</ul></div></div>
+
+<section class="sec" id="funciones">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Lo que puedes hacer</p>
+      <h2>Todo lo que usas a diario, en un solo lugar.</h2>
+      <p class="lead">Cada sección resuelve una tarea concreta de tu negocio. Usas la que necesitas y las demás esperan.</p>
+    </div>
+
+    <article class="feat">
+      <div class="txt">
+        <p class="eyebrow">Mis Clientes</p>
+        <h3>Conoce a tus clientes y escríbeles por WhatsApp.</h3>
+        <p class="d">Guarda nombre, teléfono y cumpleaños de cada cliente, ordénalos en grupos y mándales una oferta con un toque.</p>
+        <ul class="list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Grupos como "Clientes frecuentes" o "Vecinos" para avisar solo a quien corresponde.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Mensaje de oferta listo para enviar por WhatsApp. Tú confirmas cada envío.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Aviso de cumpleaños con un saludo y un regalito que tú escribes.</span></li>
+        </ul>
+      </div>
+      <div class="devs">
+        <div class="laptop"><div class="scr"><img loading="lazy" src="img/pc-clientes.jpg" width="1600" height="1000" alt="Lista de clientes con teléfono, grupo y botón de WhatsApp"></div></div>
+        <div class="phone"><img loading="lazy" src="img/mo-clientes.jpg" width="585" height="1266" alt="Lista de clientes en el celular"></div>
+      </div>
+    </article>
+
+    <article class="feat rev">
+      <div class="txt">
+        <p class="eyebrow">Productos e Inventario</p>
+        <h3>Sabe qué tienes y qué está por vencer.</h3>
+        <p class="d">Anota tus productos con cantidad, precio y fecha de vencimiento. La app te avisa antes de que se te pase algo.</p>
+        <ul class="list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Alertas por vencimiento cercano y por poco stock, en amarillo y sin sustos.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Escanea el código de barras con la cámara o importa tu lista desde Excel.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Cada inventario queda guardado con fecha, hora y quién lo hizo. Expórtalo a PDF, Excel o Google Sheets, o imprímelo.</span></li>
+        </ul>
+      </div>
+      <div class="devs solo">
+        <div class="laptop"><div class="scr"><img loading="lazy" src="img/pc-prod.jpg" width="1600" height="1000" alt="Lista de productos con cantidad, vencimiento y precio, y una alerta de productos por caducar"></div></div>
+      </div>
+    </article>
+
+    <article class="feat">
+      <div class="txt">
+        <p class="eyebrow">Finanzas</p>
+        <h3>Cierra cada día sabiendo cómo te fue.</h3>
+        <p class="d">Al terminar la jornada anotas lo que vendiste y lo que gastaste. La app calcula el balance del día y del mes.</p>
+        <ul class="list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Ventas, otros ingresos y gastos con una nota libre para recordar de qué fueron.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Meta mensual con barra de avance y gráfico de cómo va el mes.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Gastos por categoría (proveedores, arriendo, sueldos) y exportación del mes.</span></li>
+        </ul>
+      </div>
+      <div class="devs">
+        <div class="laptop"><div class="scr"><video muted loop playsinline preload="none" poster="img/pc-fin.jpg" data-auto aria-label="Video corto: se registra un día en Finanzas y se actualiza el balance y el gráfico"><source src="vid/fin.mp4" type="video/mp4"><source src="vid/fin.webm" type="video/webm"></video></div></div>
+        <div class="phone"><img loading="lazy" src="img/mo-fin2.jpg" width="585" height="1266" alt="Finanzas en el celular: gastos por categoría y gráfico del mes"></div>
+      </div>
+    </article>
+
+    <article class="feat rev">
+      <div class="txt">
+        <p class="eyebrow">Redes Sociales</p>
+        <h3>Cuéntale tu idea y la IA arma la publicación.</h3>
+        <p class="d">Escribes qué quieres promocionar, como se lo contarías a un amigo. Te devolvemos una imagen y un texto listos para usar.</p>
+        <ul class="list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Elige el estilo: divertido, profesional u oferta urgente.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Descarga la foto, copia el texto y ábrelo en Facebook, Instagram, TikTok o X.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Guarda tus últimas publicaciones para volver a usarlas.</span></li>
+        </ul>
+      </div>
+      <div class="devs solo">
+        <div class="laptop"><div class="scr"><img loading="lazy" src="img/pc-post.jpg" width="1600" height="1000" alt="Publicación generada: imagen y texto de alfajores, con botones para descargar la foto y copiar el texto"></div></div>
+      </div>
+    </article>
+
+    <article class="feat">
+      <div class="txt">
+        <p class="eyebrow">Tareas</p>
+        <h3>Reparte el trabajo y mira qué falta.</h3>
+        <p class="d">Un tablero con tres columnas: pendiente, en proceso y finalizada. Arrastra cada tarea con el dedo o el mouse.</p>
+        <ul class="list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Asigna cada tarea a una o varias personas de tu equipo.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Invita a tu familia o ayudantes con su propio número de celular.</span></li>
+        </ul>
+      </div>
+      <div class="devs solo">
+        <div class="laptop"><div class="scr"><img loading="lazy" src="img/pc-tareas.jpg" width="1600" height="1000" alt="Tablero de tareas con columnas pendiente, en proceso y finalizadas"></div></div>
+      </div>
+    </article>
+
+    <div class="duo">
+      <div class="mini">
+        <span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><path d="M14 14h2.5v2.5H14zM19 14h1.5M14 19h1.5M18 18h2.5v2.5H18z"/></svg></span>
+        <p class="eyebrow">Generador QR</p>
+        <h3>Consigue clientes con un papel pegado en la vitrina.</h3>
+        <p>Crea un QR que abre WhatsApp con un mensaje listo. Quien lo escanea te escribe, y tú sumas un cliente a tu lista.</p>
+      </div>
+      <div class="mini">
+        <span class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg></span>
+        <p class="eyebrow">Poner precio</p>
+        <h3>Calcula el precio de venta sin hacer cuentas.</h3>
+        <p>Pones lo que pagaste y cuánto quieres ganar. Te damos el precio con IVA y guardas el historial para no repetir la cuenta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec band" id="responsiva">
+  <div class="wrap g">
+    <div>
+      <p class="eyebrow">Computador y celular</p>
+      <h2>La misma app en la pantalla que tengas a mano.</h2>
+      <p class="lead">No instalas nada. Abres la página y se adapta. En el computador el menú queda al costado. En el celular baja a una barra con íconos, al alcance del pulgar.</p>
+      <ul class="list">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Las mismas funciones en el computador, la tablet y el celular.</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Botones grandes y textos claros, pensados para usar con una mano.</span></li>
+      </ul>
+    </div>
+    <div class="frame" role="group" aria-label="Video: la pantalla se achica de computador a celular y el menú pasa a la parte de abajo">
+      <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <video muted loop playsinline preload="none" poster="img/pc-inicio.jpg" data-auto><source src="vid/responsive.mp4" type="video/mp4"><source src="vid/responsive.webm" type="video/webm"></video>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="tour">
+      <div class="frame">
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+        <video muted loop playsinline preload="none" poster="img/pc-clientes.jpg" data-auto aria-label="Video corto: recorrido por Clientes, Tareas, Productos, Inventario y Finanzas en el computador"><source src="vid/tour.mp4" type="video/mp4"><source src="vid/tour.webm" type="video/webm"></video>
+      </div>
+      <div>
+        <div class="ph"><video muted loop playsinline preload="none" poster="img/mo-inicio.jpg" data-auto aria-label="Video corto: recorrido por la app en el celular y apertura del menú Más"><source src="vid/mobile.mp4" type="video/mp4"><source src="vid/mobile.webm" type="video/webm"></video></div>
+        <small>Así se ve en un celular.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Cómo empezar</p>
+      <h2>Estás usando tu negocio en minutos.</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Entra con tu celular</h3><p>Usas tu número para crear tu cuenta. No pedimos tarjeta ni una lista larga de datos.</p></li>
+      <li><h3>Ponle nombre a tu negocio</h3><p>Agrega el nombre y una foto. Después sumas tus clientes y productos a tu ritmo.</p></li>
+      <li><h3>Anota tu primer día</h3><p>Al cerrar, registra ventas y gastos en Finanzas. El balance aparece solo.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="planes" style="padding-top:0">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Planes</p>
+      <h2>Empieza gratis. Pasa a Premium cuando lo necesites.</h2>
+      <p class="lead">El plan gratis sirve para trabajar de verdad. Premium es para negocios que crecen y necesitan más gente y más historial.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Gratis</h3>
+        <div class="price"><b>$0</b><span>para siempre</span></div>
+        <ul class="list" style="margin-top:0">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Hasta 2 usuarios</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Historial de tus últimas 3 publicaciones</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Sin tarjeta de crédito</span></li>
+        </ul>
+        <a class="btn pri" data-cta href="#">Empieza gratis</a>
+      </div>
+      <div class="plan pro">
+        <span class="tagp">Precio de lanzamiento</span>
+        <h3>Premium</h3>
+        <div class="price"><b>$5.990</b><s>$8.990</s><span>al mes</span></div>
+        <p class="sub">O $65.890 al año, en vez de $107.880. El precio mensual se mantiene para siempre si contratas dentro de tus primeros 10 días.</p>
+        <ul class="list" style="margin-top:0">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Más de 2 usuarios</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Historial de tus últimas 10 publicaciones</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Más beneficios próximamente</span></li>
+        </ul>
+        <a class="btn sec2" data-cta href="#">Probar gratis primero</a>
+      </div>
+    </div>
+    <p class="fine">Premium se renueva automáticamente y lo cancelas cuando quieras desde "Mi Negocio". El pago se hace en un entorno seguro y no guardamos tus datos bancarios.</p>
+  </div>
+</section>
+
+<section class="sec" id="preguntas" style="padding-top:0">
+  <div class="wrap">
+    <div class="intro" style="margin-bottom:28px">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2>Lo que suelen preguntar antes de empezar.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>¿De verdad es gratis?</summary><p>Sí. El plan gratis no tiene fecha de término ni pide tarjeta. Premium es opcional y agrega más usuarios y más historial.</p></details>
+      <details><summary>¿Tengo que instalar algo?</summary><p>No. Entras desde el navegador de tu computador o de tu celular y empiezas. Si quieres, puedes dejar un acceso directo en la pantalla de inicio de tu teléfono.</p></details>
+      <details><summary>¿Necesito saber de computación?</summary><p>No. La app está pensada para usarse sin tutoriales: cada sección tiene un botón claro y explica qué hacer cuando todavía está vacía.</p></details>
+      <details><summary>¿Cómo funcionan las ofertas por WhatsApp?</summary><p>Eliges un grupo de clientes y escribes tu mensaje. La app abre WhatsApp con el texto listo para cada persona y tú presionas enviar. Así los mensajes salen desde tu propio número.</p></details>
+      <details><summary>¿Puedo usarlo con mi familia o mis ayudantes?</summary><p>Sí. El plan gratis incluye 2 usuarios. Cada persona entra con su número de celular, y puedes asignarles tareas. Quien colabora puede crear y editar, pero no borrar.</p></details>
+      <details><summary>¿Qué pasa si quiero dejar Premium?</summary><p>Lo cancelas desde "Mi Negocio" cuando quieras. Tu cuenta sigue funcionando con el plan gratis y no se borra nada.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec final">
+  <div class="wrap">
+    <h2>Ordena tu negocio hoy. Es gratis.</h2>
+    <p>Crea tu cuenta con tu celular y anota tu primer día en minutos.</p>
+    <a class="btn pri lg" data-cta href="#">Empieza gratis, sin tarjeta</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#inicio"><span class="mark" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11a2.8 2.8 0 00-4-4L4 15l-1 4z"/><path d="M14 6l4 4"/></svg></span><span data-brand>EmprendeDash</span></a>
+    <span>© <span id="yr">2026</span> <span data-brand>EmprendeDash</span>. Hecho para almacenes y emprendimientos.</span>
+  </div>
+</footer>
+
+<script>
+/* Cambia estos dos valores cuando tengas el nombre y el dominio definitivos. */
+var BRAND='EmprendeDash',APP_URL='https://app.tunombre.cl';
+document.querySelectorAll('[data-brand]').forEach(function(e){e.textContent=BRAND});
+document.querySelectorAll('[data-cta]').forEach(function(a){a.href=APP_URL});
+document.title=BRAND;
+try{document.getElementById('yr').textContent=new Date().getFullYear()}catch(e){}
+/* Los videos se reproducen solo cuando están a la vista, y no si la persona prefiere menos movimiento. */
+(function(){
+  var vs=[].slice.call(document.querySelectorAll('video'));
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(calm||!('IntersectionObserver' in window)){vs.forEach(function(v){v.controls=true;v.preload='metadata'});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true})}else{v.pause()}})},{threshold:.35});
+  vs.forEach(function(v){io.observe(v)});
+})();
+</script>
+</body>
+</html>
