@@ -7,6 +7,24 @@
 <title>MesónPro</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg class='lgi' width='32' height='32' viewBox='0 0 64 64' aria-hidden='true'%3E%3Crect width='64' height='64' rx='18' fill='%236D28D9'/%3E%3Crect x='12' y='13' width='8' height='15' fill='%23fff'/%3E%3Crect x='20' y='13' width='8' height='15' fill='%23FBBF24'/%3E%3Crect x='28' y='13' width='8' height='15' fill='%23fff'/%3E%3Crect x='36' y='13' width='8' height='15' fill='%23FBBF24'/%3E%3Crect x='44' y='13' width='8' height='15' fill='%23fff'/%3E%3Ccircle cx='16' cy='28' r='4' fill='%23fff'/%3E%3Ccircle cx='24' cy='28' r='4' fill='%23FBBF24'/%3E%3Ccircle cx='32' cy='28' r='4' fill='%23fff'/%3E%3Ccircle cx='40' cy='28' r='4' fill='%23FBBF24'/%3E%3Ccircle cx='48' cy='28' r='4' fill='%23fff'/%3E%3Crect x='12' y='41' width='40' height='7' rx='2' fill='%23FBBF24'/%3E%3Crect x='16' y='48' width='4' height='6' fill='%23FBBF24'/%3E%3Crect x='44' y='48' width='4' height='6' fill='%23FBBF24'/%3E%3C/svg%3E">
 <meta name="description" content="Clientes, productos, inventario, finanzas y redes sociales de tu almacén en un solo lugar. Gratis para empezar, en tu computador o en tu celular.">
+<!-- Vista previa al compartir (WhatsApp, Facebook, LinkedIn, X). Si el dominio final no es mesonpro.cl, cambia las 3 URL que empiezan con https://mesonpro.cl -->
+<link rel="canonical" href="https://mesonpro.cl/">
+<meta name="theme-color" content="#6D28D9">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<meta property="og:site_name" content="MesónPro">
+<meta property="og:title" content="MesónPro: tu almacén, ordenado desde el celular">
+<meta property="og:description" content="Clientes, productos, inventario y finanzas de tu almacén en un solo lugar. Gratis, sin tarjeta y sin instalar nada.">
+<meta property="og:url" content="https://mesonpro.cl/">
+<meta property="og:image" content="https://mesonpro.cl/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de MesónPro junto a la app en un computador y un celular. Tu almacén, ordenado desde el celular.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MesónPro: tu almacén, ordenado desde el celular">
+<meta name="twitter:description" content="Clientes, productos, inventario y finanzas de tu almacén en un solo lugar. Gratis, sin tarjeta y sin instalar nada.">
+<meta name="twitter:image" content="https://mesonpro.cl/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap">
@@ -159,6 +177,8 @@ p{margin:0}
 .final .wrap{display:grid;justify-items:center;gap:20px}
 .final h2{font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch}
 .final p{color:var(--mute);max-width:46ch}
+.ast{color:var(--yellow);font-weight:800;text-decoration:none;font-size:1.05em;line-height:1;margin-left:2px;-webkit-text-stroke:.4px #d99a06}.ast:hover{color:var(--yellow-hover)}.band .ast{-webkit-text-stroke:0}
+.nota{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--yellow);border-radius:12px;padding:14px 16px;margin-bottom:24px;color:var(--ink);font-size:.92rem;line-height:1.55;scroll-margin-top:90px}.nota b.st{color:var(--yellow);font-size:1.4rem;line-height:1;-webkit-text-stroke:.4px #d99a06}.nota .soon{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--tinta);padding:2px 8px;border-radius:6px;margin-right:6px;vertical-align:1px}
 footer{padding-block:36px;border-top:1px solid var(--line);color:var(--mute);font-size:.92rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center}
 
@@ -180,7 +200,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
     <div>
       <p class="eyebrow">Para almacenes y emprendimientos</p>
       <h1 style="margin-top:14px">Tu almacén, <em>ordenado</em> desde el celular.</h1>
-      <p class="lead">Clientes, productos, inventario, finanzas y redes sociales en un solo lugar. Sin instalar nada, en tu computador o en tu celular.</p>
+      <p class="lead">Clientes, productos, inventario, finanzas y redes sociales<a class="ast" href="#nota-ia" aria-label="Próximamente: ver nota al final">*</a> en un solo lugar. Sin instalar nada, en tu computador o en tu celular.</p>
       <div class="cta-row">
         <a class="btn pri lg" data-cta href="#">Empieza gratis</a>
         <a class="btn sec2 lg" href="#responsiva">Ver cómo funciona</a>
@@ -202,7 +222,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
   <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5M16 4.8a3.5 3.5 0 010 6.4M18 14.8c2 .6 3.2 2.3 3.5 5"/></svg>Clientes y WhatsApp</li>
   <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5v-9zM3 7.5l9 4.5 9-4.5M12 12v9"/></svg>Productos e inventario</li>
   <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.6 9.3c-.5-.8-1.4-1.3-2.6-1.3-1.5 0-2.6.8-2.6 2s1.1 1.6 2.6 2 2.6.8 2.6 2-1.1 2-2.6 2c-1.2 0-2.1-.5-2.6-1.3M12 6.5V8M12 16v1.5"/></svg>Finanzas del día y del mes</li>
-  <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Redes sociales con IA</li>
+  <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Redes sociales con IA<a class="ast" href="#nota-ia" aria-label="Próximamente: ver nota al final">*</a></li>
 </ul></div></div>
 
 <section class="sec" id="funciones">
@@ -266,7 +286,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
     <article class="feat rev">
       <div class="txt">
         <p class="eyebrow">Redes Sociales</p>
-        <h3>Cuéntale tu idea y la IA arma la publicación.</h3>
+        <h3>Cuéntale tu idea y la IA arma la publicación.<a class="ast" href="#nota-ia" aria-label="Próximamente: ver nota al final">*</a></h3>
         <p class="d">Escribes qué quieres promocionar, como se lo contarías a un amigo. Te devolvemos una imagen y un texto listos para usar.</p>
         <ul class="list">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Elige el estilo: divertido, profesional u oferta urgente.</span></li>
@@ -368,7 +388,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
         <div class="price"><b>$0</b><span>para siempre</span></div>
         <ul class="list" style="margin-top:0">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Hasta 2 usuarios</span></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Historial de tus últimas 3 publicaciones</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Historial de tus últimas 3 publicaciones con IA<a class="ast" href="#nota-ia" aria-label="Próximamente: ver nota al final">*</a></span></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Sin tarjeta de crédito</span></li>
         </ul>
         <a class="btn pri" data-cta href="#">Empieza gratis</a>
@@ -380,7 +400,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
         <p class="sub">O $65.890 al año, en vez de $107.880. El precio mensual se mantiene para siempre si contratas dentro de tus primeros 10 días.</p>
         <ul class="list" style="margin-top:0">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Más de 2 usuarios</span></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Historial de tus últimas 10 publicaciones</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Historial de tus últimas 10 publicaciones con IA<a class="ast" href="#nota-ia" aria-label="Próximamente: ver nota al final">*</a></span></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Más beneficios próximamente</span></li>
         </ul>
         <a class="btn sec2" data-cta href="#">Probar gratis primero</a>
@@ -417,6 +437,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
 </main>
 
 <footer>
+  <div class="wrap" style="display:block">
+    <p class="nota" id="nota-ia"><b class="st" aria-hidden="true">*</b><span><span class="soon">Próximamente</span>Las publicaciones para redes sociales con inteligencia artificial (crear la foto y el texto a partir de tu idea, y su historial) estarán disponibles muy pronto en los planes Gratis y Premium. Ya puedes recorrer esa sección en la app para ver cómo funcionará.</span></p>
+  </div>
   <div class="wrap">
     <a class="brand" href="#inicio"><svg class="lgi" width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#6D28D9"/><rect x="12" y="13" width="8" height="15" fill="#fff"/><rect x="20" y="13" width="8" height="15" fill="#FBBF24"/><rect x="28" y="13" width="8" height="15" fill="#fff"/><rect x="36" y="13" width="8" height="15" fill="#FBBF24"/><rect x="44" y="13" width="8" height="15" fill="#fff"/><circle cx="16" cy="28" r="4" fill="#fff"/><circle cx="24" cy="28" r="4" fill="#FBBF24"/><circle cx="32" cy="28" r="4" fill="#fff"/><circle cx="40" cy="28" r="4" fill="#FBBF24"/><circle cx="48" cy="28" r="4" fill="#fff"/><rect x="12" y="41" width="40" height="7" rx="2" fill="#FBBF24"/><rect x="16" y="48" width="4" height="6" fill="#FBBF24"/><rect x="44" y="48" width="4" height="6" fill="#FBBF24"/></svg><span class="wm"><b>mesón</b><i>pro</i></span></a>
     <span>© <span id="yr">2026</span> <span data-brand>MesónPro</span>. Hecho para almacenes y emprendimientos.</span>
